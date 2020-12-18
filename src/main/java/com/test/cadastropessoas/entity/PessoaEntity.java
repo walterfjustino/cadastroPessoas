@@ -1,7 +1,6 @@
 package com.test.cadastropessoas.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.test.cadastropessoas.constant.TipoDependente;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -31,6 +30,10 @@ public class PessoaEntity implements Serializable {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @Column(name = "nome")
     private String nome;
+
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Column(name = "apelido")
+    private String apelido;
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @Column(name = "cpf")
