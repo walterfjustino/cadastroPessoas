@@ -18,10 +18,10 @@ public class DepedenteDTO extends RepresentationModel<DepedenteDTO> {
     private Long id;
 
     @NotBlank(message = "Informe o Nome do Dependente.")
-    @Size(min = 3 , max = 200)
+    @Size(min = 2 , max = 200, message = "Preenchimento Mínimo 2 Máximo 200 caracteres. ")
     private String nome;
 
-    @NotBlank(message = "Informe o Dependente")
+    @NotBlank(message = "Informe o Tipo do Dependente")
     private TipoDependente tipoDependente;
 
 
