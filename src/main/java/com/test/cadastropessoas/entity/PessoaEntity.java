@@ -1,12 +1,15 @@
 package com.test.cadastropessoas.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.test.cadastropessoas.constant.TipoDependente;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 
@@ -32,6 +35,27 @@ public class PessoaEntity implements Serializable {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @Column(name = "cpf")
     private String cpf;
+
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @Column(name = "profissao")
+    private String profissao;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @Column(name = "salario")
+    private BigDecimal salario;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @Column(name = "data_nascimento")
+    private Date dataNascimento;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dependente_id")
+    private List<DependenteEntity> dependente;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "telefone_id")
+    private List<TelefoneEntity> telefone;
+
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id")
