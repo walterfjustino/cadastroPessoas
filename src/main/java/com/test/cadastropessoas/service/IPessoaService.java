@@ -8,7 +8,7 @@ import java.util.List;
 public interface IPessoaService {
 
     //LISTAR TODAS AS PESSOAS
-    public List<PessoaEntity> listar();
+    public List<PessoaDTO> listar();
 
     //LISTAR TODOS OS TELEFONES DE UMA PESSOA
     public List<PessoaEntity> findByNomeTel(String telefone);
