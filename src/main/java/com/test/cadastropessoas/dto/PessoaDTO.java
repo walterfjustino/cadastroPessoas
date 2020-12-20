@@ -1,14 +1,20 @@
 package com.test.cadastropessoas.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.test.cadastropessoas.entity.DependenteEntity;
+import com.test.cadastropessoas.entity.EnderecoEntity;
+import com.test.cadastropessoas.entity.TelefoneEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.hateoas.RepresentationModel;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -32,10 +38,18 @@ public class PessoaDTO extends RepresentationModel<PessoaDTO> {
     @Size(min = 2, max = 70, message = "Preenchimento Mínimo de 2 caracteres Máximo de 70 caracteres ")
     private String profissao;
 
-    @NotBlank(message = "Informe o Salário.")
+    @NotNull(message = "Informe o salário!")
     private BigDecimal salario;
 
-    @NotBlank(message = "Infome a Data de Nascimento.")
-    @Size(min =8 , max = 8 , message ="Preencher somente números - DD/MM/AAAA." )
+    @JsonFormat(pattern="dd/MM/yyyy")
+    @NotNull(message = "Infome a Data de Nascimento.")
     private Date dataNascimento;
+
+    private List<DependenteEntity> dependente;
+
+    private List<TelefoneEntity> telefone;
+
+    private List<EnderecoEntity> enderecos;
+
+
 }

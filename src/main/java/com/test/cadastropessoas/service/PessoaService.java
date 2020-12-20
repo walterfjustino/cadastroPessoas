@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PessoaService implements IPessoaService {
@@ -41,8 +42,19 @@ public class PessoaService implements IPessoaService {
 
     @Override
     public PessoaDTO consultar(Long id) {
+        try {
+            Optional<PessoaEntity> pessoaOptional = this.pessoaRepository.findById(id);
+            if(pessoaOptional.isPresent()){
+                return this.mapper.map(pessoaOptional.get(),PessoaDTO.class);
+            }
+            throw new PessoaException(Mensagens.ERRO_PESSOA_NAO_ENCONTRADA.getValor(), HttpStatus.NOT_FOUND);
+        }catch (PessoaException m){
+            throw m;
+        }catch (Exception e){
+            throw new PessoaException(Mensagens.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
 
-        return null;
+        }
+
     }
 
     @Override
@@ -55,11 +67,11 @@ public class PessoaService implements IPessoaService {
                 throw new PessoaException(Mensagens.ERRO_PESSOA_CADASTRADA.getValor(), HttpStatus.BAD_REQUEST);
             }
             return this.cadastrarOuAtualizar(pessoa) ;
-                return Boolean.TRUE;
-        }catch (Exception m){
+
+        }catch (PessoaException m){
             throw m;
 
-        }catch (PessoaException e){
+        }catch (Exception e){
             throw new PessoaException(Mensagens.ERRO_GENERICO.getValor(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -67,13 +79,32 @@ public class PessoaService implements IPessoaService {
 
     @Override
     public Boolean atualizar(PessoaDTO pessoa) {
-        return null;
+        try{
+            this.consultar(pessoa.getId());
+            return this.cadastrarOuAtualizar(pessoa);
+            }catch (PessoaException m){
+                throw m;
+             }catch (Exception e){
+                throw new PessoaException(Mensagens.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+
     }
 
     @Override
     public Boolean excluir(Long id) {
-        return null;
+        try {
+            this.consultar(id);
+            this.pessoaRepository.deleteById(id);
+            return Boolean.TRUE;
+       }catch (PessoaException m){
+            throw m;
+        }catch (Exception e){
+            throw new PessoaException(Mensagens.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
+
 
     private Boolean cadastrarOuAtualizar(PessoaDTO pessoa) {
         PessoaEntity pessoaEntity = this.mapper.map(pessoa, PessoaEntity.class);

@@ -4,12 +4,10 @@ import com.test.cadastropessoas.dto.PessoaDTO;
 import com.test.cadastropessoas.model.Response;
 import com.test.cadastropessoas.service.IPessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -28,16 +26,47 @@ public class PessoaController {
         Response<List<PessoaDTO>> response = new Response<>();
         response.setData(this.pessoaService.listar());
         response.setStatusCode(HttpStatus.OK.value());
+        response.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(PessoaController.class).listarPessoas()).withSelfRel());
         return ResponseEntity.status(HttpStatus.OK).body(response);
 
     }
 
+    //CONSULTAR PESSOA PELO ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Response<PessoaDTO>> consultaPessoa(@PathVariable Long id){
+        Response<PessoaDTO> response = new Response<>();
+        PessoaDTO pessoa = this.pessoaService.consultar(id);
+        response.setData(pessoa);
+        response.setStatusCode(HttpStatus.OK.value());
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
     //CADASTRAR PESSOAS
-    public ResponseEntity<Response<Boolean>> cadastrarPessoas(@Valid @RequestBody PessoaDTO pessoa){
+    @PostMapping
+    public ResponseEntity<Response<Boolean>> cadastrarPessoa(@Valid @RequestBody PessoaDTO pessoa){
         Response<Boolean> response = new Response<>();
         response.setData(this.pessoaService.cadastrar(pessoa));
         response.setStatusCode(HttpStatus.CREATED.value());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    //ATUALIZAR PESSOAS
+    @PutMapping("/{id}")
+    public ResponseEntity<Response<Boolean>> atualizarPessoa(@Valid @RequestBody PessoaDTO pessoa){
+        Response<Boolean> response = new Response<>();
+        response.setData(this.pessoaService.atualizar(pessoa));
+        response.setStatusCode(HttpStatus.OK.value());
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    //EXCLUIR PESSOAS
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Response<Boolean>> excluirPessoa(@PathVariable Long id){
+        Response<Boolean> response = new Response<>();
+        response.setData(this.pessoaService.excluir(id));
+        response.setStatusCode(HttpStatus.OK.value());
+        return  ResponseEntity.status(HttpStatus.OK).body(response);
+
     }
 
 }

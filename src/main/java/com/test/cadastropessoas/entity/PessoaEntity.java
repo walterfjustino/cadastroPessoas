@@ -1,5 +1,6 @@
 package com.test.cadastropessoas.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -47,6 +48,7 @@ public class PessoaEntity implements Serializable {
     @Column(name = "salario")
     private BigDecimal salario;
 
+    @JsonFormat(pattern="dd/MM/yyyy")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Column(name = "data_nascimento")
     private Date dataNascimento;
