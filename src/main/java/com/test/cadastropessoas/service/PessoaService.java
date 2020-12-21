@@ -2,7 +2,6 @@ package com.test.cadastropessoas.service;
 
 import com.test.cadastropessoas.constant.Mensagens;
 import com.test.cadastropessoas.dto.PessoaDTO;
-import com.test.cadastropessoas.entity.EnderecoEntity;
 import com.test.cadastropessoas.entity.PessoaEntity;
 import com.test.cadastropessoas.exception.PessoaException;
 import com.test.cadastropessoas.repository.IEnderecoRepository;
@@ -13,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
