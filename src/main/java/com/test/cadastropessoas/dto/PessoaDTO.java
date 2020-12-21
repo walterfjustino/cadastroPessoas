@@ -1,13 +1,11 @@
 package com.test.cadastropessoas.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.test.cadastropessoas.entity.DependenteEntity;
-import com.test.cadastropessoas.entity.EnderecoEntity;
-import com.test.cadastropessoas.entity.TelefoneEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.hateoas.RepresentationModel;
+
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -45,11 +43,11 @@ public class PessoaDTO extends RepresentationModel<PessoaDTO> {
     @NotNull(message = "Infome a Data de Nascimento.")
     private Date dataNascimento;
 
-    private List<DependenteEntity> dependente;
+    private List<Long> dependentes;
 
-    private List<TelefoneEntity> telefone;
+    private List<Long> telefones;
 
-    private List<EnderecoEntity> enderecos;
+    private List<Long> enderecos;
 
 
 }

@@ -1,7 +1,6 @@
 package com.test.cadastropessoas.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.test.cadastropessoas.constant.TipoTelefone;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -38,7 +37,7 @@ public class TelefoneEntity implements Serializable {
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @Column(name = "tipo_telefone")
-    private TipoTelefone tipoTelefone;
+    private String tipoTelefone;
 
 
 }

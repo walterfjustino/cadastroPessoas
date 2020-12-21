@@ -1,7 +1,6 @@
 package com.test.cadastropessoas.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.test.cadastropessoas.constant.TipoDependente;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -29,7 +28,7 @@ public class DependenteEntity implements Serializable { private static final lon
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @Column(name = "Tipo_Dependente")
-    private TipoDependente tipoDependente;
+    private String tipoDependente;
 
 
 }

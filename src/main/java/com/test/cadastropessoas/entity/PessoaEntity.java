@@ -55,14 +55,13 @@ public class PessoaEntity implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "dependente_id")
-    private List<DependenteEntity> dependente;
+    private List<DependenteEntity> dependentes;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "telefone_id")
-    private List<TelefoneEntity> telefone;
+    private List<TelefoneEntity> telefones;
 
-
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id")
     private List<EnderecoEntity> enderecos;
 

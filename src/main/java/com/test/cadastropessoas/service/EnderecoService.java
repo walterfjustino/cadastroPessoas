@@ -4,7 +4,6 @@ import com.test.cadastropessoas.constant.Mensagens;
 import com.test.cadastropessoas.dto.EnderecoDTO;
 import com.test.cadastropessoas.entity.EnderecoEntity;
 import com.test.cadastropessoas.exception.EnderecoException;
-import com.test.cadastropessoas.exception.PessoaException;
 import com.test.cadastropessoas.repository.IEnderecoRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -34,10 +33,10 @@ public class EnderecoService implements IEnderecoService {
     public List<EnderecoDTO> listar() {
         try{
             return this.mapper.map(this.enderecoRepository.findAll(), new TypeToken<List<EnderecoDTO>>(){}.getType());
-        }catch (PessoaException m){
+        }catch (EnderecoException m){
             throw m;
         }catch (Exception e){
-            throw new PessoaException(Mensagens.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new EnderecoException(Mensagens.ERRO_GENERICO.getValor(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }

@@ -51,7 +51,7 @@ public class PessoaController {
     }
 
     //ATUALIZAR PESSOAS
-    @PutMapping("/{id}")
+    @PutMapping
     public ResponseEntity<Response<Boolean>> atualizarPessoa(@Valid @RequestBody PessoaDTO pessoa){
         Response<Boolean> response = new Response<>();
         response.setData(this.pessoaService.atualizar(pessoa));

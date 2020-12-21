@@ -1,6 +1,6 @@
 package com.test.cadastropessoas.dto;
 
-import com.test.cadastropessoas.constant.TipoDependente;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public class DepedenteDTO extends RepresentationModel<DepedenteDTO> {
+public class DependenteDTO extends RepresentationModel<DependenteDTO> {
 
 
     private Long id;
@@ -22,7 +22,8 @@ public class DepedenteDTO extends RepresentationModel<DepedenteDTO> {
     private String nome;
 
     @NotBlank(message = "Informe o Tipo do Dependente")
-    private TipoDependente tipoDependente;
+    @Size(min = 2, max = 10, message = "Preenchimento Mínimo 2 Máximo 10 caracteres. " )
+    private String tipoDependente;
 
 
 }

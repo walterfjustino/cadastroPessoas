@@ -1,4 +1,4 @@
-package com.test.cadastropessoas.constant;
+/*package com.test.cadastropessoas.constant;
 
 import lombok.Getter;
 
@@ -16,3 +16,4 @@ public enum TipoDependente {
         this.valor = valor;
     }
 }
+*/

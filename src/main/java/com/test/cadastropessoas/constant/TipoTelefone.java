@@ -1,4 +1,4 @@
-package com.test.cadastropessoas.constant;
+/*package com.test.cadastropessoas.constant;
 
 import lombok.Getter;
 
@@ -15,4 +15,4 @@ public enum TipoTelefone {
     TipoTelefone(String valor) {
         this.valor = valor;
     }
-}
+}*/

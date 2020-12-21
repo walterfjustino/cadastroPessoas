@@ -1,7 +1,6 @@
 package com.test.cadastropessoas.controller;
 
 
-
 import com.test.cadastropessoas.dto.EnderecoDTO;
 import com.test.cadastropessoas.model.Response;
 import com.test.cadastropessoas.service.IEnderecoService;
@@ -23,7 +22,7 @@ public class EnderecoController {
 
     //LISTAR TODOS OS ENDEREÇOS
     @GetMapping
-    public ResponseEntity <Response<List<EnderecoDTO>>> listarEnderecos(){
+    public ResponseEntity<Response<List<EnderecoDTO>>> listarEnderecos() {
         Response<List<EnderecoDTO>> response = new Response<>();
         response.setData(this.enderecoService.listar());
         response.setStatusCode(HttpStatus.OK.value());
@@ -33,7 +32,7 @@ public class EnderecoController {
 
     //CONSULTAR UM ENDEREÇO PELO ID
     @GetMapping("/{id}")
-    public ResponseEntity<Response<EnderecoDTO>> consultarEndereco(@PathVariable Long id){
+    public ResponseEntity<Response<EnderecoDTO>> consultarEndereco(@PathVariable Long id) {
         Response<EnderecoDTO> response = new Response<>();
         EnderecoDTO endereco = this.enderecoService.consultar(id);
         response.setData(endereco);
@@ -43,7 +42,7 @@ public class EnderecoController {
 
     //CADASTRAR UM ENDERECO
     @PostMapping
-    public ResponseEntity<Response<Boolean>> cadastrarEndereco(@Valid @RequestBody EnderecoDTO endereco){
+    public ResponseEntity<Response<Boolean>> cadastrarEndereco(@Valid @RequestBody EnderecoDTO endereco) {
         Response<Boolean> response = new Response<>();
         response.setData(this.enderecoService.cadastrar(endereco));
         response.setStatusCode(HttpStatus.CREATED.value());
@@ -51,8 +50,8 @@ public class EnderecoController {
     }
 
     //ATUALIZA UM ENDEREÇO
-    @PutMapping("/{id}")
-    public ResponseEntity<Response<Boolean>> atualizarEndereco(@Valid @RequestBody EnderecoDTO endereco){
+    @PutMapping
+    public ResponseEntity<Response<Boolean>> atualizarEndereco(@Valid @RequestBody EnderecoDTO endereco) {
         Response<Boolean> response = new Response<>();
         response.setData(this.enderecoService.atualizar(endereco));
         response.setStatusCode(HttpStatus.OK.value());
@@ -61,7 +60,7 @@ public class EnderecoController {
 
     //EXCLUI UM ENDEREÇO
     @DeleteMapping("/{id}")
-    public ResponseEntity<Response<Boolean>> excluirEndereco(@PathVariable Long id){
+    public ResponseEntity<Response<Boolean>> excluirEndereco(@PathVariable Long id) {
         Response<Boolean> response = new Response<>();
         response.setData(this.enderecoService.excluir(id));
         response.setStatusCode(HttpStatus.OK.value());

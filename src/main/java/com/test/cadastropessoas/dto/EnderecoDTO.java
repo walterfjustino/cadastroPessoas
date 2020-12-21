@@ -1,15 +1,12 @@
 package com.test.cadastropessoas.dto;
 
-import com.test.cadastropessoas.constant.Logradouro;
-import com.test.cadastropessoas.constant.TipoEndereco;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.hateoas.RepresentationModel;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+
+import javax.validation.constraints.*;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -19,17 +16,16 @@ public class EnderecoDTO extends RepresentationModel<EnderecoDTO> {
     private Long id;
 
     @NotBlank(message = "Informar tipo do endereço.")
-    private TipoEndereco tipoEndereco;
+    private String tipoEndereco;
 
     @NotBlank(message = "Informar Logradouro.")
-    private Logradouro logradouro;
+    private String logradouro;
 
     @NotBlank(message = "Informar o Nome do Endereço.")
     @Size(min = 3 , max = 200 , message = "Preenchimento Mínimo de 3 Máximo de 200 caracteres")
     private String nomeRua;
 
-    @NotBlank(message = "Informar o número do endereço.")
-    @Max(value = 15, message = "Preenchimento máximo de 15 digítos.")
+    @NotNull(message = "Informar o número do endereço.")
     private Integer numResidencia;
 
     @NotBlank(message = "Preencher o complemento.")
@@ -40,10 +36,11 @@ public class EnderecoDTO extends RepresentationModel<EnderecoDTO> {
     private String cep;
 
     @NotBlank(message = "Informar o Bairro")
-
+    @Size(min = 3, max = 50, message = "Preenchimento minimo 3 máximo 50 caracteres.")
     private String bairro;
 
     @NotBlank(message = "Informar a cidade.")
+    @Size(min = 3, max = 50, message = "Preenchimento minimo 3 máximo 50 caracteres.")
     private String cidade;
 
     @NotBlank(message = "Informar o estado.")

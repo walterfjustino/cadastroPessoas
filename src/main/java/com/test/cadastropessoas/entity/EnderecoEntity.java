@@ -1,14 +1,15 @@
 package com.test.cadastropessoas.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.test.cadastropessoas.constant.Logradouro;
-import com.test.cadastropessoas.constant.TipoEndereco;
+
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 
 @Entity
 @Table(name = "tb_Endereco")
@@ -27,11 +28,11 @@ public class EnderecoEntity implements Serializable {
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @Column(name = "tipo_endereco")
-    private TipoEndereco tipoEndereco;
+    private String tipoEndereco;
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @Column(name = "logradouro")
-    private Logradouro logradouro;
+    private String logradouro;
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @Column(name = "nome_rua")

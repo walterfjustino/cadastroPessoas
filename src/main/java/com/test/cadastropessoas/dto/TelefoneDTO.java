@@ -1,6 +1,5 @@
 package com.test.cadastropessoas.dto;
 
-import com.test.cadastropessoas.constant.TipoTelefone;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -33,5 +32,5 @@ public class TelefoneDTO extends RepresentationModel<TelefoneDTO> {
     private String numero;
 
     @NotBlank(message = "Informe o tipo. ")
-    private TipoTelefone tipoTelefone;
+    private String tipoTelefone;
 }
