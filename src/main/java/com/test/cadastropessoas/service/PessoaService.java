@@ -110,35 +110,9 @@ public class PessoaService implements IPessoaService {
 
 
     private Boolean cadastrarOuAtualizar(PessoaDTO pessoa) {
-        List<EnderecoEntity> listEnderecoEntity = new ArrayList<>();
-        if (!pessoa.getEnderecos().isEmpty()) {
-            pessoa.getEnderecos().forEach(endereco -> {
-                if (this.enderecoRepository.findById(endereco).isPresent()) {
-                    listEnderecoEntity.add(this.enderecoRepository.findById(endereco).get());
-                }
-            });
-
-        }
-        PessoaEntity pessoaEntity = new PessoaEntity();
-        if (pessoa.getId() != null) {
-            pessoaEntity.setId(pessoa.getId());
-            pessoaEntity.setNome(pessoa.getNome());
-            pessoaEntity.setApelido(pessoa.getApelido());
-            pessoaEntity.setCpf(pessoa.getCpf());
-            pessoaEntity.setProfissao(pessoa.getProfissao());
-            pessoaEntity.setSalario(pessoa.getSalario());
-            pessoaEntity.setDataNascimento(pessoa.getDataNascimento());
-            pessoaEntity.setEnderecos(listEnderecoEntity);
-            PessoaEntity pessoaEnt = this.mapper.map(pessoa, PessoaEntity.class);
-            this.pessoaRepository.save(pessoaEnt);
-            return Boolean.TRUE;
-        }
+        PessoaEntity pessoaEnt = this.mapper.map(pessoa, PessoaEntity.class);
+        this.pessoaRepository.save(pessoaEnt);
         return Boolean.TRUE;
     }
 }
-/*
-   private Boolean cadastrarOuAtualizar(PessoaDTO pessoa) {
-            PessoaEntity pessoaEnt = this.mapper.map(pessoa, PessoaEntity.class);
-            this.pessoaRepository.save(pessoaEnt);
-            return Boolean.TRUE;
-        }}*/
+
